@@ -35,11 +35,12 @@ public class ModelData {
 
     public List<Mascota> InitMascotas(){
         List<Mascota> mascotas = new ArrayList<>();
-        mascotas.add(new Mascota("Skuichi", "Macho","Conejo",listPropietarios.get(0)));
-        mascotas.add(new Mascota("Luna", "Hembra","Perro",listPropietarios.get(1)));
-        mascotas.add(new Mascota("Marcelo", "Macho","Gato",listPropietarios.get(0)));
-        mascotas.add(new Mascota("Minina", "Hembra","Gato",listPropietarios.get(2)));
-        mascotas.add(new Mascota("Ninito", "Macho","Gato",listPropietarios.get(2)));
+        Propietario miNuevoProp = new Propietario();
+        mascotas.add(new Mascota("Skuichi", "Macho","Conejo",listPropietarios.get(0),miNuevoProp));
+        mascotas.add(new Mascota("Luna", "Hembra","Perro",listPropietarios.get(1),miNuevoProp));
+        mascotas.add(new Mascota("Marcelo", "Macho","Gato",listPropietarios.get(0),miNuevoProp));
+        mascotas.add(new Mascota("Minina", "Hembra","Gato",listPropietarios.get(2),miNuevoProp));
+        mascotas.add(new Mascota("Ninito", "Macho","Gato",listPropietarios.get(2),miNuevoProp));
         return mascotas;
     }
 

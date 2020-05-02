@@ -111,21 +111,9 @@ public class MainActivity extends AppCompatActivity {
         listViewAnimals.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(position == 0){
-                    Toast.makeText(MainActivity.this,"Desea adoptar a Skuichi",Toast.LENGTH_LONG).show();
-                }
-                if(position == 1){
-                    Toast.makeText(MainActivity.this,"Desea adoptar a Luna",Toast.LENGTH_LONG).show();
-                }
-                if(position == 2){
-                    Toast.makeText(MainActivity.this,"Desea adoptar a Marselo",Toast.LENGTH_LONG).show();
-                }
-                if(position == 3){
-                    Toast.makeText(MainActivity.this,"Desea adoptar a Minina",Toast.LENGTH_LONG).show();
-                }
-                if(position == 4){
-                    Toast.makeText(MainActivity.this,"Desea adoptar a Ninito",Toast.LENGTH_LONG).show();
-                }
+                Mascota mAdoptar = new Mascota();
+                mAdoptar = mascotas.get(position);
+                IrAdoptar(mAdoptar);
             }
         });
 
@@ -135,6 +123,12 @@ public class MainActivity extends AppCompatActivity {
                 IrAgregarAnimal();
             }
         });
+    }
+
+    public void IrAdoptar(Mascota mascotaAdoptar){
+        Intent i = new Intent(this, FormAdopcion.class);
+        i.putExtra("masAdoptar",mascotaAdoptar);
+        startActivity(i);
     }
 
     public void IrAgregarAnimal(){

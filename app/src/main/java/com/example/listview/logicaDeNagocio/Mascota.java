@@ -1,20 +1,24 @@
 package com.example.listview.logicaDeNagocio;
 
-public class Mascota {
+import java.io.Serializable;
+
+public class Mascota implements Serializable {
 
     private String nombre;
     private String genero;
     private String tipoMascota;
     private Propietario propietario;
+    private Propietario nuevoPropietario;
 
     public Mascota() {
     }
 
-    public Mascota(String nombre, String genero,String tipoMascota, Propietario propietario) {
+    public Mascota(String nombre, String genero,String tipoMascota, Propietario propietario, Propietario nuevoPropietario) {
         this.nombre = nombre;
         this.genero = genero;
         this.tipoMascota = tipoMascota;
         this.propietario = propietario;
+        this.nuevoPropietario = nuevoPropietario;
     }
 
     public String getNombre() {
@@ -47,6 +51,14 @@ public class Mascota {
 
     public void setPropietario(Propietario propietario) {
         this.propietario = propietario;
+    }
+
+    public Propietario getNuevoPropietario() {
+        return nuevoPropietario;
+    }
+
+    public void setNuevoPropietario(Propietario nuevoPropietario) {
+        this.nuevoPropietario = nuevoPropietario;
     }
 
     @Override

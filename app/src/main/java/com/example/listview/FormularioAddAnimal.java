@@ -91,6 +91,7 @@ public class FormularioAddAnimal extends AppCompatActivity {
             miMascota.setGenero(spGenero.getSelectedItem().toString());
             miMascota.setTipoMascota(spTipoMascota.getSelectedItem().toString());
             miMascota.setPropietario(miPropietario);
+            miMascota.setNuevoPropietario(miPropietario = new Propietario());
             md.getListMascotas().add(miMascota);
 
             Intent i = new Intent(this, MainActivity.class);
