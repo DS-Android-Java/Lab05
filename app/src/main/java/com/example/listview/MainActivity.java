@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.LocalActivityManager;
+import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,16 +18,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.listview.accesoDatos.ModelData;
+import com.example.listview.adaptadores.MyAdapterPet;
 import com.example.listview.logicaDeNagocio.Mascota;
 import com.example.listview.logicaDeNagocio.Propietario;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends TabActivity {
 
     public ListView listView;
     public String mTitle[] = {"Facebook","Whatsapp","Twitter","Instagram","Youtube"};
@@ -33,37 +37,27 @@ public class MainActivity extends AppCompatActivity {
     int images[] = {R.drawable.facebook,R.drawable.wa,R.drawable.twitter,R.drawable.insta,R.drawable.youtube};
     public TabHost tabHost;
 
-    public ListView listViewAnimals;
-    //public String mPName[] = {"Skuichi","Luna","Marcelo","Minina","Ninito"};
-    public ArrayList<String> mPName = new ArrayList<>();
-    int imagesP[] = {R.drawable.rabbit,R.drawable.mascota,R.drawable.gato,R.drawable.gatito,R.drawable.gatito};
-    int imagesPG[] = {R.drawable.macho,R.drawable.hembra};
-
-    public ArrayList<Mascota> mascotas;
-    public ModelData md;
-    public Button btnAgregarMascota;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        md = ModelData.getInstance();
-        mascotas = (ArrayList<Mascota>) md.getListMascotas();
 
-        tabHost = findViewById(R.id.tabHost);
+        tabHost = findViewById(android.R.id.tabhost);
         tabHost.setup();
 
         //tab1
         TabHost.TabSpec spec = tabHost.newTabSpec("Mascotas");
-        spec.setContent(R.id.tab1);
-        spec.setIndicator("Mascotas");
+        Intent intentM = new Intent(this,AnimalList.class);
+        spec.setContent(intentM);
+        spec.setIndicator("",getResources().getDrawable(R.drawable.iconopet));
         tabHost.addTab(spec);
 
         //tab2
-        spec = tabHost.newTabSpec("Tab Two");
-        spec.setContent(R.id.tab2);
-        spec.setIndicator("Tab Two");
+        spec = tabHost.newTabSpec("Agregar Mascota");
+        Intent intent = new Intent(this, FormularioAddAnimal.class);
+        spec.setContent(intent);
+        spec.setIndicator("Agregar Mascota");
         tabHost.addTab(spec);
 
         //tab3
@@ -72,19 +66,19 @@ public class MainActivity extends AppCompatActivity {
         spec.setIndicator("Tab Three");
         tabHost.addTab(spec);
 
-        btnAgregarMascota = findViewById(R.id.btnAgregarMascota);
+        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+                // display the name of the tab whenever a tab is changed
+                Toast.makeText(getApplicationContext(), tabId, Toast.LENGTH_SHORT).show();
+            }
+        });
+
         listView = findViewById(R.id.listView);
-        listViewAnimals = findViewById(R.id.listViewAnimals);
         //now create an adapter class
 
         MyAdapter adapter =  new MyAdapter(this,mTitle,mDescription,images);
         listView.setAdapter(adapter);
-
-        for(Mascota m : mascotas){
-            mPName.add(m.getNombre());
-        }
-        MyAdapterPet adapterPet = new MyAdapterPet(this,mPName,imagesP,imagesPG,mascotas);
-        listViewAnimals.setAdapter(adapterPet);
 
         //now set item click on list row
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -107,33 +101,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-        listViewAnimals.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Mascota mAdoptar = new Mascota();
-                mAdoptar = mascotas.get(position);
-                IrAdoptar(mAdoptar);
-            }
-        });
-
-        btnAgregarMascota.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                IrAgregarAnimal();
-            }
-        });
-    }
-
-    public void IrAdoptar(Mascota mascotaAdoptar){
-        Intent i = new Intent(this, FormAdopcion.class);
-        i.putExtra("masAdoptar",mascotaAdoptar);
-        startActivity(i);
-    }
-
-    public void IrAgregarAnimal(){
-        Intent i = new Intent(this,FormularioAddAnimal.class);
-        startActivity(i);
     }
 
     class MyAdapter extends ArrayAdapter<String>{
@@ -169,57 +136,6 @@ public class MainActivity extends AppCompatActivity {
             myDescription.setText(tvD[position]);
 
             return row;
-        }
-    }
-
-    class MyAdapterPet extends ArrayAdapter<String>{
-
-        Context context;
-        ArrayList<String> tvNP;
-        int imaP[];
-        int imaPG[];
-        ArrayList<Mascota> mascotas;
-
-        MyAdapterPet(Context context, ArrayList<String> tvNP,int imaP[],int imaPG[], ArrayList<Mascota> mascotas){
-            super(context,R.layout.row_animal, R.id.tvNameP, tvNP);
-            this.context = context;
-            this.tvNP = tvNP;
-            this.imaP = imaP;
-            this.imaPG = imaPG;
-            this.mascotas = mascotas;
-        }
-
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
-            LayoutInflater layoutInflater =
-                    (LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-            View row2 = layoutInflater.inflate(R.layout.row_animal,parent, false);
-            ImageView imaPet = row2.findViewById(R.id.imagenPet);
-            TextView myPN = row2.findViewById(R.id.tvNameP);
-            TextView myPO = row2.findViewById(R.id.contactOwner);
-            ImageView imaPGender = row2.findViewById(R.id.imagenGender);
-
-            //now set our resources on views
-            if(mascotas.get(position).getTipoMascota().equals("Perro")){
-                imaPet.setImageResource(imaP[1]);
-            }else if(mascotas.get(position).getTipoMascota().equals("Gato")){
-                imaPet.setImageResource(imaP[2]);
-            }else if(mascotas.get(position).getTipoMascota().equals("Conejo")){
-                imaPet.setImageResource(imaP[0]);
-            }
-
-            myPN.setText(mascotas.get(position).getNombre());
-            myPO.setText("Dueño: "+mascotas.get(position).getPropietario().getNombrePropietario()+" Telefono: " + mascotas.get(position).getPropietario().getNumero());
-            if(mascotas.get(position).getGenero().equals("Macho")){
-                imaPGender.setImageResource(imaPG[0]);
-            }else if(mascotas.get(position).getGenero().equals("Hembra")){
-                imaPGender.setImageResource(imaPG[1]);
-            }
-
-            return row2;
         }
     }
 }

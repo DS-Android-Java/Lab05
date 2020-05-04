@@ -66,6 +66,6 @@ public class FormAdopcion extends AppCompatActivity {
         int ancho = medidasVentana.widthPixels;
         int alto = medidasVentana.heightPixels;
 
-        getWindow().setLayout((int) (ancho * 0.90), (int) (alto * 0.65));
+        getWindow().setLayout((int) (ancho * 0.90), (int) (alto * 0.55));
     }
 }
