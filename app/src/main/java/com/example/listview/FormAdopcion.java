@@ -4,22 +4,29 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.listview.accesoDatos.ModelData;
 import com.example.listview.logicaDeNagocio.Mascota;
+import com.example.listview.logicaDeNagocio.Propietario;
+
+import java.util.ArrayList;
 
 public class FormAdopcion extends AppCompatActivity {
 
     public Mascota miMascota;
-    public TextView tvPetName,tvInfoPropietario;
+    public TextView tvPetName, tvInfoPropietario;
     public ImageView ivTipoAnimal;
     public ImageView ivGender;
-    public EditText etNombreAdopt,etTelefonoAdopt;
+    public EditText etNombreAdopt, etTelefonoAdopt;
     public Button btnEnviaSol;
-
+    public ModelData md;
 
 
     @Override
@@ -35,29 +42,37 @@ public class FormAdopcion extends AppCompatActivity {
         etTelefonoAdopt = findViewById(R.id.etTelefonoAdopt);
         btnEnviaSol = findViewById(R.id.btnEnviarSolicitud);
         tvInfoPropietario = findViewById(R.id.tvInfoPropietario);
+        md = ModelData.getInstance();
 
 
         miMascota = (Mascota) getIntent().getSerializableExtra("masAdoptar");
-        tvPetName.setText("Nombre: "+miMascota.getNombre());
+        tvPetName.setText("Nombre: " + miMascota.getNombre());
 
         //Se cargan los datos
-        if(miMascota.getTipoMascota().equals("Perro")){
+        if (miMascota.getTipoMascota().equals("Perro")) {
             ivTipoAnimal.setImageResource(R.drawable.mascota);
-        }else if(miMascota.getTipoMascota().equals("Gato")){
+        } else if (miMascota.getTipoMascota().equals("Gato")) {
             ivTipoAnimal.setImageResource(R.drawable.gato);
-        }else if(miMascota.getTipoMascota().equals("Conejo")){
+        } else if (miMascota.getTipoMascota().equals("Conejo")) {
             ivTipoAnimal.setImageResource(R.drawable.rabbit);
         }
 
-        if(miMascota.getGenero().equals("Macho")){
+        if (miMascota.getGenero().equals("Macho")) {
             ivGender.setImageResource(R.drawable.macho);
-        }else{
+        } else {
             ivGender.setImageResource(R.drawable.hembra);
         }
 
-        tvInfoPropietario.setText("Contacto propietario \n"+
-                "Nombre: " + miMascota.getPropietario().getNombrePropietario() + "\n"+
+        tvInfoPropietario.setText("Contacto propietario \n" +
+                "Nombre: " + miMascota.getPropietario().getNombrePropietario() + "\n" +
                 "Telefono: " + miMascota.getPropietario().getNumero());
+
+        btnEnviaSol.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SolicitudAdopcion();
+            }
+        });
 
         //Aca se prepara el popup
         DisplayMetrics medidasVentana = new DisplayMetrics();
@@ -67,5 +82,42 @@ public class FormAdopcion extends AppCompatActivity {
         int alto = medidasVentana.heightPixels;
 
         getWindow().setLayout((int) (ancho * 0.90), (int) (alto * 0.55));
+    }
+
+    private void SolicitudAdopcion() {
+        Mascota miMascAdop = miMascota;
+
+        if (validate()) {
+            Propietario miNuevoProp = new Propietario();
+            miNuevoProp.setNombrePropietario(etNombreAdopt.getText().toString());
+            miNuevoProp.setNumero(etTelefonoAdopt.getText().toString());
+            miMascAdop.setNuevoPropietario(miNuevoProp);
+
+            md.getListMascotasAdopt().add(miMascAdop);
+            Log.d("cantidadMasA", "El tamanio de la lista es: " + md.getListMascotasAdopt().size());
+            Toast.makeText(this, "Solicitud de adopción enviada correctamente!", Toast.LENGTH_LONG).show();
+            finish();
+        } else {
+            Toast.makeText(this, "Debe rellenar los campo con sus datos!", Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    public boolean validate() {
+        boolean valido = true;
+        int error=0;
+        if (etNombreAdopt.getText().toString().equals("")) {
+            etNombreAdopt.setError("Debe ingresar su nombre completo!");
+            error++;
+        }
+        if(etTelefonoAdopt.getText().toString().equals("")){
+            etTelefonoAdopt.setError("Debe ingresar su numero de teléfono");
+            error++;
+        }
+        if(error>0){
+            valido=false;
+        }
+
+        return valido;
     }
 }

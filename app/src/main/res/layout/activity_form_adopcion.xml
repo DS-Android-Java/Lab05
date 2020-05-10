@@ -92,7 +92,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="5dp"
                     android:ems="10"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:hint="Telefono"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/etNombreAdopt" />

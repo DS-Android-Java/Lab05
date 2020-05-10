@@ -10,6 +10,7 @@ public class ModelData {
 
     private List<Propietario> listPropietarios;
     private  List<Mascota> listMascotas;
+    private List<Mascota> listMascotasAdopt;
 
     private static ModelData modelData;
 
@@ -23,6 +24,7 @@ public class ModelData {
     public ModelData() {
         listPropietarios = InitPropietarios();
         listMascotas = InitMascotas();
+        listMascotasAdopt = InitMascotasAdopt();
     }
 
     public List<Propietario> InitPropietarios(){
@@ -44,6 +46,17 @@ public class ModelData {
         return mascotas;
     }
 
+    public List<Mascota> InitMascotasAdopt(){
+        List<Mascota> mascotas = new ArrayList<>();
+        Propietario miNuevoProp = new Propietario();
+        mascotas.add(new Mascota("Rambo", "Macho","Conejo",listPropietarios.get(0),miNuevoProp));
+        mascotas.add(new Mascota("Rocky", "Macho","Perro",listPropietarios.get(1),miNuevoProp));
+        mascotas.add(new Mascota("Pelusa", "Macho","Gato",listPropietarios.get(0),miNuevoProp));
+        mascotas.add(new Mascota("Toby", "Hembra","Perro",listPropietarios.get(2),miNuevoProp));
+        mascotas.add(new Mascota("Tom", "Macho","Gato",listPropietarios.get(2),miNuevoProp));
+        return mascotas;
+    }
+
     public List<Propietario> getListPropietarios() {
         return listPropietarios;
     }
@@ -58,5 +71,13 @@ public class ModelData {
 
     public void setListMascotas(List<Mascota> listMascotas) {
         this.listMascotas = listMascotas;
+    }
+
+    public List<Mascota> getListMascotasAdopt() {
+        return listMascotasAdopt;
+    }
+
+    public void setListMascotasAdopt(List<Mascota> listMascotasAdopt) {
+        this.listMascotasAdopt = listMascotasAdopt;
     }
 }
