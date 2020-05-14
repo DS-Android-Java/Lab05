@@ -35,6 +35,7 @@ public class ModelData {
         return propietarios;
     }
 
+
     public List<Mascota> InitMascotas(){
         List<Mascota> mascotas = new ArrayList<>();
         Propietario miNuevoProp = new Propietario();
@@ -56,6 +57,7 @@ public class ModelData {
         mascotas.add(new Mascota("Tom", "Macho","Gato",listPropietarios.get(2),miNuevoProp));
         return mascotas;
     }
+
 
     public List<Propietario> getListPropietarios() {
         return listPropietarios;

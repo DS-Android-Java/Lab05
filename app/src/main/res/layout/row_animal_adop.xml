@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="11dp"
+    android:orientation="horizontal"
+    android:background="@drawable/cajat"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp">
+
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/contenedor"
+        android:layout_width="297dp"
+        android:layout_height="68dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="5dp"
+        app:columnCount="2"
+        app:orientation="horizontal"
+        app:rowCount="2">
+
+        <ImageView
+            android:id="@+id/imagenPetA"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:text="Main Tittle"
+                android:fontFamily="@font/coolveticarg"
+                android:textColor="#fff"
+                android:layout_marginTop="1dp"
+                android:textSize="20sp"
+                android:id="@+id/tvNamePA"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:text="Sub Tittle"
+                android:fontFamily="@font/coolveticarg"
+                android:layout_below="@+id/tvNamePA"
+                android:textColor="#fff"
+                android:layout_marginBottom="3dp"
+                android:textSize="15sp"
+                android:id="@+id/contactOwnerA"/>
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="5dp"
+                android:layout_below="@+id/contactOwner"
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/imagenGenderA"/>
+        </RelativeLayout>
+    </androidx.gridlayout.widget.GridLayout>
+
+</LinearLayout>

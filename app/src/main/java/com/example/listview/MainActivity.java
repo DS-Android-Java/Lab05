@@ -32,8 +32,6 @@ import java.util.ArrayList;
 public class MainActivity extends TabActivity {
 
     public ListView listView;
-    public String mTitle[] = {"Facebook","Whatsapp","Twitter","Instagram","Youtube"};
-    public String mDescription[] = {"Facebook description","Whatsapp description","Twitter description","Instagram description","Youtube description"};
     int images[] = {R.drawable.facebook,R.drawable.wa,R.drawable.twitter,R.drawable.insta,R.drawable.youtube};
     public TabHost tabHost;
 
@@ -61,9 +59,10 @@ public class MainActivity extends TabActivity {
         tabHost.addTab(spec);
 
         //tab3
-        spec = tabHost.newTabSpec("Tab Three");
-        spec.setContent(R.id.tab3);
-        spec.setIndicator("Tab Three");
+        spec = tabHost.newTabSpec("Solicitudes de Adopción");
+        Intent intentA = new Intent(this, AnimalPorAdoptar.class);
+        spec.setContent(intentA);
+        spec.setIndicator("Solicitudes de Adopción");
         tabHost.addTab(spec);
 
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
@@ -74,33 +73,6 @@ public class MainActivity extends TabActivity {
             }
         });
 
-        listView = findViewById(R.id.listView);
-        //now create an adapter class
-
-        MyAdapter adapter =  new MyAdapter(this,mTitle,mDescription,images);
-        listView.setAdapter(adapter);
-
-        //now set item click on list row
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(position == 0){
-                    Toast.makeText(MainActivity.this,"Facebook Description",Toast.LENGTH_LONG).show();
-                }
-                if(position == 1){
-                    Toast.makeText(MainActivity.this,"Whatsapp Description",Toast.LENGTH_LONG).show();
-                }
-                if(position == 2){
-                    Toast.makeText(MainActivity.this,"Twitter Description",Toast.LENGTH_LONG).show();
-                }
-                if(position == 3){
-                    Toast.makeText(MainActivity.this,"Instagram Description",Toast.LENGTH_LONG).show();
-                }
-                if(position == 4){
-                    Toast.makeText(MainActivity.this,"Youtube Description",Toast.LENGTH_LONG).show();
-                }
-            }
-        });
     }
 
     class MyAdapter extends ArrayAdapter<String>{
