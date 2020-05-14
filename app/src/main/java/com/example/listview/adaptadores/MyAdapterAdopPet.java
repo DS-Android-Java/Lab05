@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 
 import com.example.listview.R;
 import com.example.listview.logicaDeNagocio.Mascota;
+import com.example.listview.logicaDeNagocio.SolicitudAdopcion;
 
 import java.util.ArrayList;
 
@@ -21,9 +22,9 @@ public class MyAdapterAdopPet extends ArrayAdapter<String> {
     ArrayList<String> tvNPA;
     int imaPA[];
     int imaPGA[];
-    ArrayList<Mascota> mascotaA;
+    ArrayList<SolicitudAdopcion> mascotaA;
 
-    public MyAdapterAdopPet(Context context, ArrayList<String> tvNPA, int[] imaPA, int[] imaPGA, ArrayList<Mascota> mascotaA) {
+    public MyAdapterAdopPet(Context context, ArrayList<String> tvNPA, int[] imaPA, int[] imaPGA, ArrayList<SolicitudAdopcion> mascotaA) {
         super(context, R.layout.row_animal_adop, R.id.tvNamePA, tvNPA);
         this.context = context;
         this.tvNPA = tvNPA;
@@ -44,19 +45,20 @@ public class MyAdapterAdopPet extends ArrayAdapter<String> {
         ImageView imaPGender = row2.findViewById(R.id.imagenGenderA);
 
         //now set our resources on views
-        if(mascotaA.get(position).getTipoMascota().equals("Perro")){
+        if(mascotaA.get(position).getMascotaAdoptar().getTipoMascota().equals("Perro")){
             imaPet.setImageResource(imaPA[1]);
-        }else if(mascotaA.get(position).getTipoMascota().equals("Gato")){
+        }else if(mascotaA.get(position).getMascotaAdoptar().getTipoMascota().equals("Gato")){
             imaPet.setImageResource(imaPA[2]);
-        }else if(mascotaA.get(position).getTipoMascota().equals("Conejo")){
+        }else if(mascotaA.get(position).getMascotaAdoptar().getTipoMascota().equals("Conejo")){
             imaPet.setImageResource(imaPA[0]);
         }
 
-        myPN.setText(mascotaA.get(position).getNombre());
-        myPO.setText("Postulante: "+mascotaA.get(position).getPropietario().getNombrePropietario()+" Teléfono: " + mascotaA.get(position).getPropietario().getNumero());
-        if(mascotaA.get(position).getGenero().equals("Macho")){
+        myPN.setText(mascotaA.get(position).getMascotaAdoptar().getNombre());
+        myPO.setText("Postulante: "+mascotaA.get(position).getNuevoPropietarioSolicitante().getNombrePropietario()+" Teléfono: "
+                + mascotaA.get(position).getNuevoPropietarioSolicitante().getNumero());
+        if(mascotaA.get(position).getMascotaAdoptar().getGenero().equals("Macho")){
             imaPGender.setImageResource(imaPGA[0]);
-        }else if(mascotaA.get(position).getGenero().equals("Hembra")){
+        }else if(mascotaA.get(position).getMascotaAdoptar().getGenero().equals("Hembra")){
             imaPGender.setImageResource(imaPGA[1]);
         }
 

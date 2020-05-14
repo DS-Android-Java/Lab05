@@ -2,6 +2,7 @@ package com.example.listview;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.example.listview.accesoDatos.ModelData;
 import com.example.listview.logicaDeNagocio.Mascota;
 import com.example.listview.logicaDeNagocio.Propietario;
+import com.example.listview.logicaDeNagocio.SolicitudAdopcion;
 
 import java.util.ArrayList;
 
@@ -86,15 +88,20 @@ public class FormAdopcion extends AppCompatActivity {
 
     private void SolicitudAdopcion() {
         Mascota miMascAdop = miMascota;
+        SolicitudAdopcion miSolicitudAdop = new SolicitudAdopcion();
 
         if (validate()) {
             Propietario miNuevoProp = new Propietario();
             miNuevoProp.setNombrePropietario(etNombreAdopt.getText().toString());
             miNuevoProp.setNumero(etTelefonoAdopt.getText().toString());
-            miMascAdop.setNuevoPropietario(miNuevoProp);
 
-            md.getListMascotasAdopt().add(miMascAdop);
-            Log.d("cantidadMasA", "El tamanio de la lista es: " + md.getListMascotasAdopt().size());
+            miSolicitudAdop.setMascotaAdoptar(miMascota);
+            miSolicitudAdop.setNuevoPropietarioSolicitante(miNuevoProp);
+
+            md.getListSolicitudMascotasAdopt().add(miSolicitudAdop);
+            Log.d("cantidadMasA", "El tamanio de la lista es: " + md.getListSolicitudMascotasAdopt().size());
+            Intent i = new Intent(this, MainActivity.class);
+            startActivity(i);
             Toast.makeText(this, "Solicitud de adopción enviada correctamente!", Toast.LENGTH_LONG).show();
             finish();
         } else {

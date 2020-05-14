@@ -2,6 +2,7 @@ package com.example.listview.accesoDatos;
 
 import com.example.listview.logicaDeNagocio.Mascota;
 import com.example.listview.logicaDeNagocio.Propietario;
+import com.example.listview.logicaDeNagocio.SolicitudAdopcion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,7 @@ public class ModelData {
 
     private List<Propietario> listPropietarios;
     private  List<Mascota> listMascotas;
-    private List<Mascota> listMascotasAdopt;
+    private List<SolicitudAdopcion> listSolicitudMascotasAdopt;
 
     private static ModelData modelData;
 
@@ -24,7 +25,7 @@ public class ModelData {
     public ModelData() {
         listPropietarios = InitPropietarios();
         listMascotas = InitMascotas();
-        listMascotasAdopt = InitMascotasAdopt();
+        listSolicitudMascotasAdopt = InitMascotasAdopt();
     }
 
     public List<Propietario> InitPropietarios(){
@@ -38,24 +39,28 @@ public class ModelData {
 
     public List<Mascota> InitMascotas(){
         List<Mascota> mascotas = new ArrayList<>();
-        Propietario miNuevoProp = new Propietario();
-        mascotas.add(new Mascota("Skuichi", "Macho","Conejo",listPropietarios.get(0),miNuevoProp));
-        mascotas.add(new Mascota("Luna", "Hembra","Perro",listPropietarios.get(1),miNuevoProp));
-        mascotas.add(new Mascota("Marcelo", "Macho","Gato",listPropietarios.get(0),miNuevoProp));
-        mascotas.add(new Mascota("Minina", "Hembra","Gato",listPropietarios.get(2),miNuevoProp));
-        mascotas.add(new Mascota("Ninito", "Macho","Gato",listPropietarios.get(2),miNuevoProp));
+        mascotas.add(new Mascota("Skuichi", "Macho","Conejo",listPropietarios.get(0)));
+        mascotas.add(new Mascota("Luna", "Hembra","Perro",listPropietarios.get(1)));
+        mascotas.add(new Mascota("Marcelo", "Macho","Gato",listPropietarios.get(0)));
+        mascotas.add(new Mascota("Minina", "Hembra","Gato",listPropietarios.get(2)));
+        mascotas.add(new Mascota("Ninito", "Macho","Gato",listPropietarios.get(2)));
         return mascotas;
     }
 
-    public List<Mascota> InitMascotasAdopt(){
-        List<Mascota> mascotas = new ArrayList<>();
-        Propietario miNuevoProp = new Propietario();
-        mascotas.add(new Mascota("Rambo", "Macho","Conejo",listPropietarios.get(0),miNuevoProp));
-        mascotas.add(new Mascota("Rocky", "Macho","Perro",listPropietarios.get(1),miNuevoProp));
-        mascotas.add(new Mascota("Pelusa", "Macho","Gato",listPropietarios.get(0),miNuevoProp));
-        mascotas.add(new Mascota("Toby", "Hembra","Perro",listPropietarios.get(2),miNuevoProp));
-        mascotas.add(new Mascota("Tom", "Macho","Gato",listPropietarios.get(2),miNuevoProp));
-        return mascotas;
+    public List<SolicitudAdopcion> InitMascotasAdopt(){
+        List<SolicitudAdopcion> solicitudAdopcionList = new ArrayList<>();
+        solicitudAdopcionList.add(new SolicitudAdopcion(new Mascota("Rambo", "Macho","Conejo",listPropietarios.get(0))
+                , new Propietario("Eloy Perez","12345678")));
+
+        solicitudAdopcionList.add(new SolicitudAdopcion(new Mascota("Rocky", "Macho","Perro",listPropietarios.get(1))
+                , new Propietario("Juanito Perez","87654321")));
+        solicitudAdopcionList.add(new SolicitudAdopcion(new Mascota("Pelusa", "Macho","Gato",listPropietarios.get(0))
+                , new Propietario("Daniel Paniagua","62134654")));
+        solicitudAdopcionList.add(new SolicitudAdopcion(new Mascota("Toby", "Hembra","Perro",listPropietarios.get(2))
+                , new Propietario("Kattia Cruz","71123445")));
+        solicitudAdopcionList.add(new SolicitudAdopcion(new Mascota("Tom", "Macho","Gato",listPropietarios.get(2))
+                , new Propietario("Gabriel Ramirez","83224333")));
+        return solicitudAdopcionList;
     }
 
 
@@ -75,11 +80,11 @@ public class ModelData {
         this.listMascotas = listMascotas;
     }
 
-    public List<Mascota> getListMascotasAdopt() {
-        return listMascotasAdopt;
+    public List<SolicitudAdopcion> getListSolicitudMascotasAdopt() {
+        return listSolicitudMascotasAdopt;
     }
 
-    public void setListMascotasAdopt(List<Mascota> listMascotasAdopt) {
-        this.listMascotasAdopt = listMascotasAdopt;
+    public void setListSolicitudMascotasAdopt(List<SolicitudAdopcion> listSolicitudMascotasAdopt) {
+        this.listSolicitudMascotasAdopt = listSolicitudMascotasAdopt;
     }
 }
