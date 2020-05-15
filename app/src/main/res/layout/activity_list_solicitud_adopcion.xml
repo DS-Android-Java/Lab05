@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".FormAdopcion">
+    tools:context=".ListSolicitudAdopcion">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -32,29 +32,29 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvPetName"
+                android:id="@+id/tvPetNameS"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
-                android:textColor="#000000"
-                android:textSize="17dp"
                 android:textStyle="bold"
+                android:textSize="17dp"
+                android:textColor="#000000"
                 app:layout_constraintStart_toEndOf="@+id/ivTipoAnimal"
                 tools:layout_editor_absoluteY="32dp" />
 
             <TextView
-                android:id="@+id/tvInfoPropietario"
+                android:id="@+id/tvInfoPropietarioS"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:textColor="#607D8B"
                 android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="TextView"
                 app:layout_constraintStart_toEndOf="@+id/ivTipoAnimal"
                 app:layout_constraintTop_toBottomOf="@+id/tvPetName" />
 
             <ImageView
-                android:id="@+id/ivGender"
+                android:id="@+id/ivGenderS"
                 android:layout_width="59dp"
                 android:layout_height="43dp"
                 android:layout_marginTop="5dp"
@@ -69,54 +69,30 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/textViewS"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="25dp"
                 android:textSize="15dp"
                 android:textColor="#000000"
-                android:text="Información del Adoptador"
+                android:textStyle="bold"
+                android:text="Información del Postulante"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ivTipoAnimal" />
+            <TextView
+                android:id="@+id/tvInfoSolicitante"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:textColor="#1565C0"
+                android:text="TextView"
+                app:layout_constraintStart_toEndOf="@+id/ivTipoAnimal"
+                app:layout_constraintTop_toBottomOf="@+id/tvPetName" />
 
-                <EditText
-                    android:id="@+id/etNombreAdopt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:hint="Nombre Completo"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-                <EditText
-                    android:id="@+id/etTelefonoAdopt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:ems="10"
-                    android:inputType="number"
-                    android:hint="Teléfono"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/etNombreAdopt" />
 
-                <Button
-                    android:id="@+id/btnEnviarSolicitud"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/btn_add"
-                    android:textColor="#fff"
-                    android:textAllCaps="false"
-                    android:text="Enviar"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/etTelefonoAdopt" />
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

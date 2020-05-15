@@ -65,9 +65,9 @@ public class FormAdopcion extends AppCompatActivity {
             ivGender.setImageResource(R.drawable.hembra);
         }
 
-        tvInfoPropietario.setText("Contacto propietario \n" +
+        tvInfoPropietario.setText("Contacto del Propietario \n" +
                 "Nombre: " + miMascota.getPropietario().getNombrePropietario() + "\n" +
-                "Telefono: " + miMascota.getPropietario().getNumero());
+                "Teléfono: " + miMascota.getPropietario().getNumero());
 
         btnEnviaSol.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,10 +102,10 @@ public class FormAdopcion extends AppCompatActivity {
             Log.d("cantidadMasA", "El tamanio de la lista es: " + md.getListSolicitudMascotasAdopt().size());
             Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
-            Toast.makeText(this, "Solicitud de adopción enviada correctamente!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Solicitud de Adopción Enviada Correctamente!", Toast.LENGTH_LONG).show();
             finish();
         } else {
-            Toast.makeText(this, "Debe rellenar los campo con sus datos!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Debe rellenar los campos con sus datos!", Toast.LENGTH_LONG).show();
         }
 
     }
@@ -118,7 +118,7 @@ public class FormAdopcion extends AppCompatActivity {
             error++;
         }
         if(etTelefonoAdopt.getText().toString().equals("")){
-            etTelefonoAdopt.setError("Debe ingresar su numero de teléfono");
+            etTelefonoAdopt.setError("Debe ingresar su número de teléfono");
             error++;
         }
         if(error>0){

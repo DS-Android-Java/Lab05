@@ -55,14 +55,21 @@ public class MainActivity extends TabActivity {
         spec = tabHost.newTabSpec("Agregar Mascota");
         Intent intent = new Intent(this, FormularioAddAnimal.class);
         spec.setContent(intent);
-        spec.setIndicator("Agregar Mascota");
+        spec.setIndicator("",getResources().getDrawable(R.drawable.agregarmas));
         tabHost.addTab(spec);
 
         //tab3
         spec = tabHost.newTabSpec("Solicitudes de Adopción");
         Intent intentA = new Intent(this, AnimalPorAdoptar.class);
         spec.setContent(intentA);
-        spec.setIndicator("Solicitudes de Adopción");
+        spec.setIndicator("",getResources().getDrawable(R.drawable.solicadop));
+        tabHost.addTab(spec);
+
+        //tab4
+        spec = tabHost.newTabSpec("Redes Sociales");
+        Intent intent1 = new Intent(this, RedesSociales.class);
+        spec.setContent(intent1);
+        spec.setIndicator("",getResources().getDrawable(R.drawable.socialmedia));
         tabHost.addTab(spec);
 
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {

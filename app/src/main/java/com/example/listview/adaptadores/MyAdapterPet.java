@@ -54,7 +54,7 @@ public class MyAdapterPet extends ArrayAdapter<String> {
         }
 
         myPN.setText(mascotas.get(position).getNombre());
-        myPO.setText("Dueño: "+mascotas.get(position).getPropietario().getNombrePropietario()+" Telefono: " + mascotas.get(position).getPropietario().getNumero());
+        myPO.setText("Dueño: "+mascotas.get(position).getPropietario().getNombrePropietario()+" Teléfono: " + mascotas.get(position).getPropietario().getNumero());
         if(mascotas.get(position).getGenero().equals("Macho")){
             imaPGender.setImageResource(imaPG[0]);
         }else if(mascotas.get(position).getGenero().equals("Hembra")){

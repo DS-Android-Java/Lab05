@@ -95,7 +95,7 @@ public class FormularioAddAnimal extends AppCompatActivity {
 
             Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
-            Toast.makeText(this,"Animal agregado a lista de adopción!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Animal Agregado a La Lista de Adopción!", Toast.LENGTH_LONG).show();
             finish();
         }
     }

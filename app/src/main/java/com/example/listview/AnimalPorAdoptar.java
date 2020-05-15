@@ -2,6 +2,7 @@ package com.example.listview;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -34,10 +35,27 @@ public class AnimalPorAdoptar extends AppCompatActivity {
         mascotaA = (ArrayList<SolicitudAdopcion>) md.getListSolicitudMascotasAdopt();
         listViewAnimalsAdop = findViewById(R.id.listViewAnimalsXAdopt);
 
+        //se carga la lista
         for(SolicitudAdopcion sol : mascotaA){
             mPNameA.add(sol.getMascotaAdoptar().getNombre());
         }
         MyAdapterAdopPet adapterAdopPet = new MyAdapterAdopPet(this,mPNameA,imagesP,imagesPG,mascotaA);
         listViewAnimalsAdop.setAdapter(adapterAdopPet);
+
+        listViewAnimalsAdop.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                SolicitudAdopcion solicitudAdopcion = new SolicitudAdopcion();
+                solicitudAdopcion = mascotaA.get(position);
+                Solicitud(solicitudAdopcion);
+            }
+        });
+
+    }
+
+    public  void Solicitud(SolicitudAdopcion solicitudAdopcion){
+        Intent i = new Intent(this, ListSolicitudAdopcion.class);
+        i.putExtra("masAdoptar", solicitudAdopcion);
+        startActivity(i);
     }
 }
