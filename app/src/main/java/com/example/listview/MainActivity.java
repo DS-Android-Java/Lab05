@@ -31,15 +31,12 @@ import java.util.ArrayList;
 
 public class MainActivity extends TabActivity {
 
-    public ListView listView;
-    int images[] = {R.drawable.facebook,R.drawable.wa,R.drawable.twitter,R.drawable.insta,R.drawable.youtube};
     public TabHost tabHost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         tabHost = findViewById(android.R.id.tabhost);
         tabHost.setup();
@@ -80,41 +77,5 @@ public class MainActivity extends TabActivity {
             }
         });
 
-    }
-
-    class MyAdapter extends ArrayAdapter<String>{
-
-        Context context;
-        String tvT[];
-        String tvD[];
-        int ima[];
-
-        MyAdapter(Context context, String tvT[], String tvD[],int ima[]){
-            super(context,R.layout.row, R.id.textView1, tvT);
-            this.context = context;
-            this.tvT = tvT;
-            this.tvD = tvD;
-            this.ima = ima;
-        }
-
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
-            LayoutInflater layoutInflater =
-                    (LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-            View row = layoutInflater.inflate(R.layout.row,parent, false);
-            ImageView images = row.findViewById(R.id.imagen);
-            TextView myTittle = row.findViewById(R.id.textView1);
-            TextView myDescription = row.findViewById(R.id.textViewD);
-
-            //now set our resources on views
-            images.setImageResource(ima[position]);
-            myTittle.setText(tvT[position]);
-            myDescription.setText(tvD[position]);
-
-            return row;
-        }
     }
 }

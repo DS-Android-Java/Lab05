@@ -25,21 +25,6 @@
                 android:layout_height="wrap_content"
                 android:id="@android:id/tabcontent"
                 tools:ignore="Suspicious0dp">
-
-                <!--tab3-->
-                <LinearLayout
-                    android:id="@+id/tab3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:background="#ededed">
-
-                    <ListView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/listView">
-                    </ListView>
-                </LinearLayout>
             </FrameLayout>
         </LinearLayout>
 </TabHost>

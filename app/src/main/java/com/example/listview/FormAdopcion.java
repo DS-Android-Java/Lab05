@@ -46,7 +46,7 @@ public class FormAdopcion extends AppCompatActivity {
         tvInfoPropietario = findViewById(R.id.tvInfoPropietario);
         md = ModelData.getInstance();
 
-
+        //Se extrae el objeto mascota pasado desde el listview
         miMascota = (Mascota) getIntent().getSerializableExtra("masAdoptar");
         tvPetName.setText("Nombre: " + miMascota.getNombre());
 
