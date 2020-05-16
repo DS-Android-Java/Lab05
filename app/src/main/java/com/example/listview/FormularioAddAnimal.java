@@ -68,6 +68,14 @@ public class FormularioAddAnimal extends AppCompatActivity {
             etNombre.setError("Debe ingresar un nombre");
             error++;
         }
+        if(etNombreMascota.getText().toString().isEmpty()){
+            etNombreMascota.setError("Debe ingresar el nombre de la mascota");
+            error++;
+        }
+        if(etTelefono.getText().toString().isEmpty()){
+            etTelefono.setError("Debe ingresar un numero de teléfono");
+            error++;
+        }
         if(error>0){
             Toast.makeText(this,"Algunos errores",Toast.LENGTH_LONG).show();
             valido = false;
